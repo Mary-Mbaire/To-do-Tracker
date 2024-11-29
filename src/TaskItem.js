@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TaskItem = ({ task, onUpdate }) => {
+const TaskItem = ({ task, onUpdate, onEdit }) => {
     const toggleComplete = () => {
       onUpdate({ ...task, completed: !task.completed });
     };
@@ -15,6 +15,7 @@ const TaskItem = ({ task, onUpdate }) => {
           <button onClick={toggleComplete}>
             {task.completed ? 'Mark Incomplete' : 'Mark Complete'}
           </button>
+          <button onClick={() => onEdit(task)}>Edit</button>
         </div>
       );
     };
@@ -28,6 +29,7 @@ const TaskItem = ({ task, onUpdate }) => {
           completed: PropTypes.bool.isRequired,
         }).isRequired,
         onUpdate: PropTypes.func.isRequired,
+        onEdit: PropTypes.func.isRequired,
       };
       
       export default TaskItem;
